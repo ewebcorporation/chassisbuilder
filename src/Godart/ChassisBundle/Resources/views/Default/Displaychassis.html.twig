@@ -1,0 +1,146 @@
+
+{% extends "::jqmob.html.twig" %}
+
+
+
+{% block jqheader %}
+{{header}}
+{% endblock %}
+
+{% block jqcontent %}
+            
+
+             <script>
+                                        
+              $( "#erasebutton" ).on( "click", function(event, ui) {
+                    
+                    
+                    $( "#eraseconfirm" ).popup("open"); 
+                                               });
+
+             
+            </script>
+             
+             
+
+          
+            {% if notification == true %}
+             <div data-role="popup" id="notificationpopup">
+          	<a href="#"  data-role="button" data-theme="a" data-icon="check" data-iconpos="notext" class="ui-btn-right">Close</a>
+                <h5>Note:</h5>
+                <p>{{notificationtext}}</p>
+             </div>           
+            {% endif %}
+            
+            
+            {# -----------------------------------------------------------------------------------#}
+
+            {# POPUP D'EFFACEMENT D UN CHASSIS#}
+             <div data-role="popup" id="eraseconfirm">
+          	<a href="#"  data-role="button" data-theme="a" data-icon="check" data-iconpos="notext" class="ui-btn-right">Close</a>
+                <div data-role="header" id="eraseconfirmpopupheader" data-theme="b"><h1>supprimez</h1></div>
+                <div data-role="content" id="eraseconfirmcontent" data-theme="a">
+
+                <p>Vous êtes sur le point de supprimer un chassis, confirmer vous ce choix?</p>
+                
+                
+                {# si on annulle la suppression, on recharge la page en passnt tout les parametres #}
+                <a href="{{ path('godart_chassis_afficher' , { 'id': chassis.id ,'backpath': backpath,'header':header}) }}" data-role="button" data-inline="true">non</a>
+                
+              {# si on confirme la suppression, on recharge la page en passnt tout les parametres #}
+
+                <a href="{{ path('godart_chassis_effacer' , { 'id': chassis.id,'backpath': backpath }) }}" data-role="button" data-inline="true" data-theme="b">Supprimer</a>
+              
+                
+                
+                </div>           
+            </div>
+            {# -----------------------------------------------------------------------------------#}
+            
+            
+         
+        {# -----------------------------------------------------------------------------------#}
+                    {# Formaulaire #}
+
+
+          <form action="{{ path('godart_chassis_afficher' , { 'id': chassis.id ,'backpath': backpath,'header':header}) }}" method="post">
+     
+             
+             
+         <img src="data:image/svg+xml;base64,{{ chassis.b64 }}" alt="test" width="200" height="200" style="float:left" />
+         
+        <fieldset data-role="controlgroup">
+	<legend>type</legend>
+     	<input type="radio" name="matiere" id="radio-choice-1" value="PVC" {% if chassis.matiere == "PVC" %} checked="checked" {% endif %} />
+     	<label for="radio-choice-1">PVC</label>
+
+     	<input type="radio" name="matiere" id="radio-choice-2" value="BOIS" {% if chassis.matiere == "BOIS" %} checked="checked" {% endif %} />
+     	<label for="radio-choice-2">BOIS</label>
+        
+     	<input type="radio" name="matiere" id="radio-choice-3" value="ALU"  {% if chassis.matiere == "ALU" %} checked="checked" {% endif %}/>
+     	<label for="radio-choice-3">ALU</label>
+        </fieldset>
+       
+         <br>
+         <br>
+         <hr>
+<div data-role="controlgroup" data-type="horizontal">
+<a href="index.html" data-role="button" data-icon="gear" data-theme="b">Edition du schéma</a>
+<input type=submit value="valider" data-icon="refresh" data-role="button" data-theme="b"/>
+
+
+<a href="#" id="erasebutton" data-role="button" data-icon="delete" data-theme="b">Supprimer ce chassis</a>
+
+{# ici on va generer le chemin du retour pour le bouton retour #}
+
+{% if backpath == 'default' %}
+<a href="{{ path('godart_chassis_lister') }}" data-role="button"  data-icon="back" data-theme="b">Retour</a>
+{%endif%}
+
+
+
+</div>      
+         
+        
+        
+         <hr>
+         <h2>Général</h2>
+Désignation du chassis:         
+<input type="text" name="designation" id="basic" value="{{ chassis.designation }}" data-mini="true" data-theme="b"/>
+
+
+
+<label for="textarea-a">commentaire:</label>
+<textarea name="commentaire" id="textarea-a">
+{% if chassis.commentaire is not null %}{{ chassis.commentaire }}{%else%}placer vos commentaires ici.Ils ne seront pas vue auprés des fournisseurs{% endif %}
+    </textarea>
+Seuil:         
+<input type="text" name="seuil"  value="{{ chassis.seuil }}" data-mini="true" />
+Couleur interieur:         
+<input type="text" name="couleurint"  value="{{ chassis.couleurint }}" data-mini="true" />
+Couleur exterieur:         
+<input type="text" name="couleurext"  value="{{ chassis.couleurext }}" data-mini="true" />
+Vitrage:
+<input type="text" name="vitrage" value="{{ chassis.vitrage }}" data-mini="true" />         
+ 
+
+    
+<h2>Option pour les chassis en Bois</h2>    
+Essence:
+<input type="text" name="essence"  value="{{ chassis.essence }}" data-mini="true" />       
+Interface:
+<input type="text" name="interface"  value="{{ chassis.interface }}" data-mini="true" />       
+Lasure:
+<input type="text" name="lasure" value="{{ chassis.lasure }}" data-mini="true" />      
+     
+  
+            
+            <input type="hidden" name ="template" value="{{chassis.template}}"/>
+            <input type="hidden" name ="b64" value="{{chassis.b64}}"/>
+
+            </form>  
+            
+
+
+             
+{% endblock %}

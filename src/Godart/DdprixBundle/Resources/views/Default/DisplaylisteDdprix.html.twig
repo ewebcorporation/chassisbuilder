@@ -1,0 +1,36 @@
+
+{% extends "::jqmob.html.twig" %}
+
+
+
+{% block jqheader %}
+liste des demandes de prix
+{% endblock %}
+
+
+{% block jqcontent %}
+  <a href="#" data-role="button" data-icon="plus" data-inline="true" data-theme="b">Creer une nouvelle demande de prix</a>
+<ul data-role="listview" data-filter="true">
+ {% for ddprix in liste_ddprix %}
+            <li>
+             
+                
+
+                
+                <a href="#" >
+                   <h5>{{ ddprix.designation }}          <i>{{ddprix.date|date('d/m/Y')}}</i></h5>
+                    <p>
+                                               
+                    
+           
+                    </p>
+                
+                </a>
+    
+  
+
+            
+            </li> 
+         {% endfor %}  
+    </ul>
+{% endblock %}

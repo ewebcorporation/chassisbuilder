@@ -1,0 +1,9 @@
+
+godart_lister_ddprix:
+    pattern:  /lister/
+    defaults: { _controller: GodartDdprixBundle:Display:DisplaylisteDdprix}
+    
+    
+godart_ajouter_ddprix:
+    pattern:  /ajouterdebug/
+    defaults: { _controller: GodartDdprixBundle:Default:test}   

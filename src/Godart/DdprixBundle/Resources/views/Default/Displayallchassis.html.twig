@@ -1,0 +1,34 @@
+{% extends "::jqmob.html.twig" %}
+
+
+
+{% block jqheader %}
+Ajout un produit dans la demande de prix
+{% endblock %}
+
+
+{% block jqcontent %}     
+
+    
+
+        <ul data-role="listview" data-inset="true" data-filter="true">
+        {% for chassis in liste_chassis %}
+            <li>
+            <a href="{{ path('godart_addchassis_ddprix' , { 'id': id ,'idchassis' : chassis.id }) }}" >
+            <img src="data:image/svg+xml;base64,{{ chassis.b64 }}" alt="test"/> <h5>{{ chassis.designation }}          <i>{{chassis.date|date('d/m/Y')}}</i></h5>
+            <p>
+                    {% if chassis.matiere is defined %} {{chassis.matiere}} {% endif %}- interieure:
+                    {% if chassis.couleurint is defined %} {{chassis.couleurint}} {% endif %}- interieur:
+                    {% if chassis.couleurext is defined %} {{chassis.couleurext}} {% endif %}
+            </p>
+            </a>
+            </li> 
+         {% endfor %}
+            
+           
+        
+
+        </ul>
+
+
+{% endblock %}

@@ -1,0 +1,38 @@
+  {# ICI on retourne toutes les informations concernant le ddprix #}
+    {# on passe un objet ddprix                             #}
+
+       <div data-role="controlgroup" data-type="horizontal">
+        <a href="{{ path('godart_lister_ddprix',{ 'id': ddprix.id}) }}" data-role="button" data-icon="plus" data-theme="b">ajouter un nouveau chassis</a>
+        </div> 
+
+
+
+<h2>Information sur cette demande de prix</h2>
+<label for="basic">Désignation</label>
+<input id="basic" type="text" name="designation"  value="{{ ddprix.designation }}" data-mini="true" />
+
+
+<label for="select-choice-3" class="select">Status:</label>
+<select name="status" id="select-choice-3">
+   <option value="open" {% if ddprix.status == "open" %}selected{% endif %}>ouvert</option>
+   <option value="firstpass" {% if ddprix.status == "firstpass" %}selected{% endif %}>première visite faite.</option>
+   <option value="secondpass" {% if ddprix.status == "secondpass" %}selected{% endif %}>seconde viste faite.</option>
+   <option value="close" {% if ddprix.status == "close" %}selected{% endif %}>cloturer</option>
+</select>
+
+
+<label for="textarea-a">Commentaire interne:</label>
+<textarea name="commentaireint" id="textarea-a">
+{% if ddprix.commentaireint is defined %}{{ddprix.commentaireint}}{% else %}Vous pouvez ajouter vos commentaires ici, il ne seront vue qu'en interne{% endif %}
+</textarea>
+
+<label for="textarea-a">Commentaire externe:</label>
+<textarea name="commentaireext" id="textarea-a">
+{% if ddprix.commentaireext is defined %}{{ddprix.commentaireext}}{% else %}Les commentaires plaçés ici seront vues des fournisseurs{% endif %}
+</textarea>
+
+  <h2>Produits la composant</h2>           
+{% render "GodartChassisBundle:Default:DisplayChassis" with { 'act' : 'listearray', 'value' : listechassis} %}
+    
+
+

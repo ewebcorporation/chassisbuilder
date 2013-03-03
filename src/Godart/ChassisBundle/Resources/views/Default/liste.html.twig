@@ -1,0 +1,25 @@
+
+{% extends "::jqmob.html.twig" %}
+
+
+{% block jqheader %}
+Liste des chassis
+{% endblock %}
+
+{% block jqcontent %}
+
+            {% if notification == true %}
+             <div data-role="popup" id="notificationpopup">
+          	<a href="#"  data-role="button" data-theme="a" data-icon="check" data-iconpos="notext" class="ui-btn-right">Close</a>
+                <h5>Note:</h5>
+                <p>{{notificationtext}}</p>
+             </div>           
+            {% endif %}
+
+<div data-role="controlgroup" data-type="horizontal">
+<a href="{{path('godart_chassis_ajouter')}}" data-role="button" data-icon="plus" data-theme="b">Nouveau chassis</a>
+</div>    
+
+{% render "GodartChassisBundle:Default:DisplayChassis" %}
+            
+{% endblock %}

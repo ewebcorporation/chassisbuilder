@@ -1,0 +1,17 @@
+{# en entrée l'id du Ddprix #}
+
+{% extends "::jqmob.html.twig" %}
+
+
+
+{% block jqheader %}
+Vue de la demande de prix:
+{% endblock %}
+
+
+{% block jqcontent %}     
+
+
+{% render "GodartDdprixBundle:Default:DisplayDdprix" with { 'id' : id } %}
+
+{% endblock %}

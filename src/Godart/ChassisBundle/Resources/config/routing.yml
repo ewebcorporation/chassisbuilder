@@ -1,0 +1,24 @@
+godart_chassis_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: GodartChassisBundle:Default:index }
+
+godart_chassis_ajouter:
+    pattern:  /ajouter/
+    defaults: { _controller: GodartChassisBundle:Default:DisplaylisteChassisadd }
+
+godart_chassis_lister:
+    pattern:  /lister/
+    defaults: { _controller: GodartChassisBundle:Default:ListerChassis}
+
+    
+godart_chassis_afficher:
+    pattern:  /afficher/{id}/{backpath}/{header}
+    defaults: { _controller: GodartChassisBundle:Default:DisplayChassis,backpath : default,header : default }
+ 
+godart_chassis_effacer:
+    pattern:  /effacer/{id}/{backpath}
+    defaults: { _controller: GodartChassisBundle:Default:DisplayChassisErase,backpath : defaults }
+
+godart_chassis_test:
+    pattern:  /test/
+    defaults: { _controller: GodartChassisBundle:Default:test}  

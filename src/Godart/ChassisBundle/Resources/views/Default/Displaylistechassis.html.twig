@@ -1,0 +1,61 @@
+
+{% extends "::jqmob.html.twig" %}
+
+
+{% block jqheader %}
+
+Liste des Template
+
+
+{% endblock %}
+
+{% block jqcontent %}
+
+            {% if notification == true %}
+             <div data-role="popup" id="notificationpopup">
+          	<a href="#"  data-role="button" data-theme="a" data-icon="check" data-iconpos="notext" class="ui-btn-right">Close</a>
+                <h5>Note:</h5>
+                <p>{{notificationtext}}</p>
+             </div>           
+            {% endif %}
+
+<div data-role="controlgroup" data-type="horizontal">
+<a href="{{path('godart_chassis_ajouter')}}" data-role="button" data-icon="plus" data-theme="b">Nouveau chassis</a>
+</div>    
+
+          <ul data-role="listview" data-inset="true" data-filter="true">
+	
+     
+        
+	
+        {% for chassis in liste_chassis %}
+            <li>
+             
+                
+
+                
+                <a href="{{ path('godart_chassis_afficher' , { 'id': chassis.id ,'header' : 'Modification du template'}) }}" >
+                    <img src="data:image/svg+xml;base64,{{ chassis.b64 }}" alt="test"/> <h5>{{ chassis.designation }}          <i>{{chassis.date|date('d/m/Y')}}</i></h5>
+                    <p>
+                    {% if chassis.matiere is defined %} {{chassis.matiere}} {% endif %}- interieure:
+                    {% if chassis.couleurint is defined %} {{chassis.couleurint}} {% endif %}- interieur:
+                    {% if chassis.couleurext is defined %} {{chassis.couleurext}} {% endif %}
+                            
+                    
+                    
+                    </p>
+                
+                </a>
+    
+  
+
+            
+            </li> 
+         {% endfor %}
+            
+           
+        
+
+        </ul>          
+
+{% endblock %}

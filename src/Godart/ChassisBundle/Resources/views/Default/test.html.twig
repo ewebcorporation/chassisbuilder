@@ -1,0 +1,15 @@
+
+{% extends "::jqmob.html.twig" %}
+
+    {% block jqheader %}
+     point d'entree
+    {% endblock %}
+
+
+    {% block jqcontent %}
+
+<a href="{{path('godart_chassis_lister')}}" data-role="button" data-icon="back" data-theme="b">Lister les chassis</a>
+<a href="{{path('godart_voir_ddprix',{ 'id' : 1 })}}" data-role="button" data-icon="back" data-theme="b">voir la ddprix 1</a>
+
+    {% endblock %}
+
